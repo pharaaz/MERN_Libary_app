@@ -1,0 +1,33 @@
+{
+  "name": "assigment",
+  "version": "1.0.0",
+  "description": "\u0000",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "app": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pharaaz/assigment.git"
+  },
+  "author": "faraaz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pharaaz/assigment/issues"
+  },
+  "homepage": "https://github.com/pharaaz/assigment#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "config": "^3.3.6",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.8",
+    "validation": "0.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13"
+  }
+}

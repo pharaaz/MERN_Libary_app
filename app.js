@@ -11,7 +11,6 @@ const app = express();
 
 const path = require("path");
 
-
 // Step 1:
 app.use(express.static(path.resolve(__dirname, "./my-app/build")));
 // Step 2:
@@ -19,6 +18,7 @@ app.get("*", function (request, response) {
 
   response.sendFile(path.resolve(__dirname, "./my-app/build", "index.html"));
 });
+
 
 // Connect Database
 connectDB();
@@ -37,4 +37,4 @@ app.use('/api/books', books);
 
 const port = process.env.PORT || 8082;
 
-app.listen(port, () => console.log(`Server running on port ${port}`));
+app.listen(port, ()=>console.log(`Server running on port ${port}`));

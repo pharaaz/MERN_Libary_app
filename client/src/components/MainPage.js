@@ -17,10 +17,7 @@ class MainPage extends Component {
         this.logout = this.logout.bind(this);
     }
 
-    //handle profile click, which should allow user to jump to profile page
-    profileClick() {
-        window.alert("you will be redirected to profile page");
-    }
+    
     logout(e) {
         window.alert("logging out!");
 
@@ -44,14 +41,13 @@ class MainPage extends Component {
 
                     </Nav>
                     <div onClick={this.profileClick}>
-                        <Avatar sx={{ bgcolor: deepOrange[500] }}>N</Avatar>   
+                        <Avatar sx={{ bgcolor: deepGreen[500] }}>F</Avatar>   
                     </div>
                     <div>
-                        <Dropdown text='User name'>
+                        <Dropdown text='Settings'>
                             <Dropdown.Menu>
-                            <Dropdown.Item text='Browse profile' />
                             <Dropdown.Item text='Edit profile' />
-                            <Dropdown.Item text='Logout' description='logout' />
+                            <Dropdown.Item text='Logout' />
                             </Dropdown.Menu>
                         </Dropdown>
                         

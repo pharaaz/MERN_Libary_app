@@ -13,7 +13,7 @@ const books = require('./routes/api/books');
 
 const app = express();
 
-const path = require("path");
+
 
 // cors
 app.use(express.json());
@@ -22,7 +22,7 @@ app.use(cors());
 // use Routes
 app.use('/api/books', books);
 
-
+const path = require("path");
 
 // Step 1:
 app.use(express.static(path.resolve(__dirname, "./my-app/build")));

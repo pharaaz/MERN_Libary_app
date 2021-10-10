@@ -31,7 +31,6 @@ class MainPage extends Component {
         <>
             <Navbar bg="dark" variant="dark">
                 <Container>
-                    <Navbar.Brand  href="/">SEPER</Navbar.Brand>
                     <Nav className="mr-auto" >
                     <Nav.Link  href="/">Home</Nav.Link>
                     <Nav.Link  href="/search">Search</Nav.Link>
@@ -56,7 +55,7 @@ class MainPage extends Component {
             </Navbar>
                 
 
-            <h1 style={centerlize}>SEPER System</h1>
+            <h1 style={centerlize}>Software Engineering Practice Evidence Repository</h1>
            
             
             <img src={mainPagePicture0}/>

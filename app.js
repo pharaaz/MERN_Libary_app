@@ -2,14 +2,27 @@
 
 const express = require('express');
 const connectDB = require('./config/db');
-var cors = require('cors');
+const bodyParser = require("body-parser");
+const cors = require('cors');
+const PORT = process.env.PORT || 8082;
+
 
 // routes
 const books = require('./routes/api/books');
 
+
 const app = express();
 
 const path = require("path");
+
+// cors
+app.use(express.json());
+app.use(cors());
+
+// use Routes
+app.use('/api/books', books);
+
+
 
 // Step 1:
 app.use(express.static(path.resolve(__dirname, "./my-app/build")));
@@ -23,18 +36,10 @@ app.get("*", function (request, response) {
 // Connect Database
 connectDB();
 
-// cors
-app.use(cors({ origin: true, credentials: true }));
+//middleware
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
-// Init Middleware
-app.use(express.json({ extended: false }));
+//app.get('/', (req, res) => res.send('Hello world!'));
 
-app.get('/', (req, res) => res.send('Hello world!'));
-
-
-// use Routes
-app.use('/api/books', books);
-
-const port = process.env.PORT || 8082;
-
-app.listen(port, ()=>console.log(`Server running on port ${port}`));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

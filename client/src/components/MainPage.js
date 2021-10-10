@@ -41,7 +41,7 @@ class MainPage extends Component {
 
                     </Nav>
                     <div onClick={this.profileClick}>
-                        <Avatar sx={{ bgcolor: deepGreen[500] }}>F</Avatar>   
+                        <Avatar sx={{ bgcolor: deepPurple[500] }}>F</Avatar>   
                     </div>
                     <div>
                         <Dropdown text='Settings'>

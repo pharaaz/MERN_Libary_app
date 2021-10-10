@@ -20,6 +20,78 @@ router.get('/', (req, res) => {
     .catch(err => res.status(404).json({ noarticlesfound: 'No Articles found' }));
 });
 
+
+// @route GET next api/articles
+// @description Get next article for analysing
+// @access Public
+router.get('/findNextArticle', (req, res) => {
+  Article.findOne({"type": 'processing'})
+    .then(articles => res.json(articles))
+    .catch(err => res.status(404).json({ noarticlesfound: 'No Article found to analyze' }));
+});
+
+// @route GET api/articles/:q1 as queried
+// with query
+// @description Get articles that satisfied query
+// @access Public
+router.get('/search/:q1', (req, res) => {
+  //split query string by &
+  let s=[];
+  let searchQuery;
+  s = req.params.q1.split('&');
+  if(s[0] != '' && s[1] != '' && s[2] != ''){
+    searchQuery = {"title": s[0], "isbn": s[1], "author": s[2], "type": 'accepted'};
+  }else if(s[0] == '' && s[1] == '' && s[2] == ''){
+    searchQuery = {"type": 'accepted'};
+  }else if(s[0] != '' && s[1] == '' && s[2] == ''){
+    searchQuery = {"title": s[0], "type": 'accepted'};
+  }else if(s[0] == '' && s[1] != '' && s[2] == ''){
+    searchQuery = {"isbn": s[1], "type": 'accepted'};
+  }else if(s[0] == '' && s[1] == '' && s[2] != ''){
+    searchQuery = {"author": s[2], "type": 'accepted'};
+  }else if(s[0] != '' && s[1] != '' && s[2] == ''){
+    searchQuery = {"title": s[0], "isbn": s[1], "type": 'accepted'};
+  }else if(s[0] != '' && s[1] == '' && s[2] != ''){
+    searchQuery = {"title": s[0], "author": s[2], "type": 'accepted'};
+  }else if(s[0] == '' && s[1] != '' && s[2] != ''){
+    searchQuery = {"isbn": s[1], "author": s[2], "type": 'accepted'};
+  }
+  
+  //searchQuery = {"title": s[0],"author":s[1]};
+  Article.find(searchQuery)
+    .then(articles => res.json(articles))
+    .catch(err => res.status(404).json({ noarticlesfound: 'No Articles found' }));
+});
+
+router.get('/moderatorSearch/:q1', (req, res) => {
+  //split query string by &
+  let s=[];
+  let moderatorSearchQuery;
+  s = req.params.q1.split('&');
+  if(s[0] != '' && s[1] != '' && s[2] != ''){
+    moderatorSearchQuery = {"title": s[0], "isbn": s[1], "author": s[2], "type": 'pending'};
+  }else if(s[0] == '' && s[1] == '' && s[2] == ''){
+    moderatorSearchQuery = {"type": 'pending'};
+  }else if(s[0] != '' && s[1] == '' && s[2] == ''){
+    moderatorSearchQuery = {"title": s[0], "type": 'pending'};
+  }else if(s[0] == '' && s[1] != '' && s[2] == ''){
+    moderatorSearchQuery = {"isbn": s[1], "type": 'pending'};
+  }else if(s[0] == '' && s[1] == '' && s[2] != ''){
+    moderatorSearchQuery = {"author": s[2], "type": 'pending'};
+  }else if(s[0] != '' && s[1] != '' && s[2] == ''){
+    moderatorSearchQuery = {"title": s[0], "isbn": s[1], "type": 'pending'};
+  }else if(s[0] != '' && s[1] == '' && s[2] != ''){
+    moderatorSearchQuery = {"title": s[0], "author": s[2], "type": 'pending'};
+  }else if(s[0] == '' && s[1] != '' && s[2] != ''){
+    moderatorSearchQuery = {"isbn": s[1], "author": s[2], "type": 'pending'};
+  }
+  
+
+  Article.find(moderatorSearchQuery)
+    .then(articles => res.json(articles))
+    .catch(err => res.status(404).json({ noarticlesfound: 'No Articles found' }));
+});
+
 // @route GET api/articles/:id
 // @description Get single article by id
 // @access Public

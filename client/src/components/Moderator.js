@@ -1,9 +1,8 @@
-//perform search article action
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
 import axios from 'axios';
-import ArticleCard from './ArticleCard';
+import ArticleModeratorCard from './ArticleModeratorCard';
 
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
@@ -14,31 +13,30 @@ import Stack from '@mui/material/Stack';
 import { deepOrange, deepPurple } from '@mui/material/colors';
 import { Dropdown } from 'semantic-ui-react';
 
+class Moderator extends Component{
+    //showing queue for moderators view
+    //should show all pending articles
 
-
-
-class SearchAction extends Component{
-  
- 
+    //need to set up accept button, need to set up decline button
+    //button logic would be changing type field value and refresh the page if possible
     constructor(props) {
         super(props);
         this.state = {
             title: '',
             isbn: '',
             author: '',
+         
             articles:[]
         }
-    
+
         this.handleChange = this.handleChange.bind(this);
-        //TypeError: Cannot read properties of undefined (reading 'setState')
-        //when meeting such error, means we will need to bind the handle function
         this.handleIsbnChange = this.handleIsbnChange.bind(this);
         this.handleAuthorChange = this.handleAuthorChange.bind(this);
        
         this.handleSubmit = this.handleSubmit.bind(this);
-      }
-    
-      handleChange(event) {
+    }
+
+    handleChange(event) {
         this.setState({title: event.target.value});
       }
       
@@ -51,18 +49,11 @@ class SearchAction extends Component{
         this.setState({author: event.target.value});
       }
 
-    
-
-
-
       handleSubmit(event) {
         event.preventDefault();
-        //var searchQuery = this.state.value;
-        //window.location.href = "/show-research-list";
-        
-        // + searchQuery;
+       
         axios
-            .get('https://sepersystem.herokuapp.com/api/articles/search/'+this.state.title+ '&' +this.state.isbn + '&'+this.state.author)
+            .get(' https://sepersystem.herokuapp.com/api/articles/moderatorSearch/'+this.state.title+ '&' +this.state.isbn + '&'+this.state.author)
         .then(res => {
           this.setState({
             articles: res.data
@@ -70,11 +61,9 @@ class SearchAction extends Component{
          
         })
         .catch(err =>{
-          console.log('Error from ShowResearchList');
+          console.log('Error from moderator search');
         })
       }
-
-
       render() {
         const articles = this.state.articles;
         let articleList;
@@ -91,7 +80,7 @@ class SearchAction extends Component{
             articleList = "there is no article record!";
         } else {
           articleList = articles.map((article, k) =>
-            <ArticleCard article={article} key={k} />
+            <ArticleModeratorCard article={article} key={k} />
           );
         }
         return (
@@ -120,8 +109,9 @@ class SearchAction extends Component{
                     </div>
                 </Container>
             </Navbar>
-            <h3 style={centerlize}>Search page </h3>
-              <form style={centerlize}onSubmit={this.handleSubmit}>
+            <h3 style={centerlize}>Moderator page </h3>
+
+              <form style={centerlize} onSubmit={this.handleSubmit}>
                   <label>
                    
                     
@@ -149,6 +139,7 @@ class SearchAction extends Component{
 
               <div className="list">
                     {articleList}
+                    
               </div>
               
 
@@ -156,6 +147,6 @@ class SearchAction extends Component{
           
         );
       }
-}
 
-export default SearchAction;
+}
+export default Moderator;

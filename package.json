@@ -34,6 +34,7 @@
     "validation": "0.0.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.12",
+    "react-test-renderer": "^17.0.2"
   }
 }

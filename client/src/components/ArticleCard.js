@@ -9,12 +9,12 @@ const ArticleCard = (props) => {
         <div className="card-container">
             <div className="desc">
                 <h2>
-                    <Link to={`/show-book/${article._id}`}>
-                        { article.title }
+                    <Link to={`/show-article/${article._id}`}>
+                       Title : { article.title }
                     </Link>
                 </h2>
-                <h3>{article.author}</h3>
-                <p>{article.description}</p>
+                <h3>Author :{article.author}</h3>
+                <p>Description : {article.description}</p>
             </div>
         </div>
     )

@@ -17,10 +17,7 @@ class MainPage extends Component {
         this.logout = this.logout.bind(this);
     }
 
-    //handle profile click, which should allow user to jump to profile page
-    profileClick() {
-        window.alert("you will be redirected to profile page");
-    }
+    
     logout(e) {
         window.alert("logging out!");
 
@@ -34,7 +31,6 @@ class MainPage extends Component {
         <>
             <Navbar bg="dark" variant="dark">
                 <Container>
-                    <Navbar.Brand  href="/">SEPER</Navbar.Brand>
                     <Nav className="mr-auto" >
                     <Nav.Link  href="/">Home</Nav.Link>
                     <Nav.Link  href="/search">Search</Nav.Link>
@@ -44,14 +40,13 @@ class MainPage extends Component {
 
                     </Nav>
                     <div onClick={this.profileClick}>
-                        <Avatar sx={{ bgcolor: deepOrange[500] }}>N</Avatar>   
+                        <Avatar sx={{ bgcolor: deepPurple[500] }}>F</Avatar>   
                     </div>
                     <div>
-                        <Dropdown text='User name'>
+                        <Dropdown text='Settings'>
                             <Dropdown.Menu>
-                            <Dropdown.Item text='Browse profile' />
                             <Dropdown.Item text='Edit profile' />
-                            <Dropdown.Item text='Logout' description='logout' />
+                            <Dropdown.Item text='Logout' />
                             </Dropdown.Menu>
                         </Dropdown>
                         
@@ -60,7 +55,7 @@ class MainPage extends Component {
             </Navbar>
                 
 
-            <h1 style={centerlize}>SEPER System</h1>
+            <h1 style={centerlize}>Software Engineering Practice Evidence Repository</h1>
            
             
             <img src={mainPagePicture0}/>

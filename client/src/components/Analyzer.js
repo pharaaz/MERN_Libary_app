@@ -130,7 +130,6 @@ class Analyzer extends Component{
         
             <Navbar bg="dark" variant="dark">
                 <Container>
-                    <Navbar.Brand  href="/">SEPER</Navbar.Brand>
                     <Nav className="mr-auto" >
                     <Nav.Link  href="/">Home</Nav.Link>
                     <Nav.Link  href="/search">Search</Nav.Link>

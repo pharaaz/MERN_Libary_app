@@ -6,18 +6,20 @@ const bodyParser = require("body-parser");
 const cors = require('cors');
 const PORT = process.env.PORT || 8082;
 
+const app = express();
+
+// cors
+app.use(express.json());
+app.use(cors());
+
 
 // routes
 const books = require('./routes/api/books');
 
 
-const app = express();
 
 
 
-// cors
-app.use(express.json());
-app.use(cors());
 
 // use Routes
 app.use('/api/books', books);

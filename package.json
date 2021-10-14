@@ -1,40 +1,38 @@
 {
-  "name": "cise_assignment",
+  "name": "assigment",
   "version": "1.0.0",
-  "description": "",
+  "description": "\u0000",
   "main": "app.js",
   "scripts": {
-    "build": "cd client && npm run build",
-    "install-client": "cd client && npm install",
+    "build": "cd my-app && npm run build",
+    "install-client": "cd my-app && npm install",
     "heroku-postbuild": "npm run install-client && npm run build",
     "server": "nodemon app.js",
     "develop": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\"",
     "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\""
+    
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ycy190/CISE-Assignment.git"
+    "url": "git+https://github.com/pharaaz/assigment.git"
   },
-  "author": "Chenyang Yu 1290866",
-  "license": "ISC",
+  "author": "faraaz",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ycy190/CISE-Assignment/issues"
+    "url": "https://github.com/pharaaz/assigment/issues"
   },
-  "homepage": "https://github.com/ycy190/CISE-Assignment#readme",
+  "homepage": "https://github.com/pharaaz/assigment#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
-    "concurrently": "^6.2.0",
     "config": "^3.3.6",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "mongoose": "^5.13.5",
-    "nodemon": "^2.0.12",
+    "mongoose": "^6.0.8",
     "validation": "0.0.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.12",
-    "react-test-renderer": "^17.0.2"
+    "nodemon": "^2.0.13"
   }
 }

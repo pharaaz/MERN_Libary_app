@@ -1,7 +1,7 @@
 {
   "name": "assigment",
   "version": "1.0.0",
-  "description": "\u0000",
+  "description": "",
   "main": "app.js",
   "scripts": {
     "build": "cd client && npm run build",

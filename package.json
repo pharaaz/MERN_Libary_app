@@ -4,8 +4,8 @@
   "description": "\u0000",
   "main": "app.js",
   "scripts": {
-    "build": "cd my-app && npm run build",
-    "install-client": "cd my-app && npm install",
+    "build": "cd client && npm run build",
+    "install-client": "cd client && npm install",
     "heroku-postbuild": "npm run install-client && npm run build",
     "server": "nodemon app.js",
     "develop": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\"",

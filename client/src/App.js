@@ -1,29 +1,21 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
-//import 'semantic-ui-css/semantic.js';
 
-
-import MainPage from './components/MainPage';
-import SearchAction from './components/SearchAction';
-import Upload from './components/Upload';
-import Moderator from './components/Moderator';
-import Analyzer from './components/Analyzer';
-import ShowArticle from './components/ShowArticle';
+import CreateBook from './components/CreateBook';
+import ShowBookList from './components/ShowBookList';
+import ShowBookDetails from './components/ShowBookDetails';
+import UpdateBookInfo from './components/UpdateBookInfo';
 
 class App extends Component {
   render() {
     return (
       <Router>
         <div>
-          <Route exact path='/' component={MainPage} />
-          <Route path='/search' component={SearchAction}/>
-          <Route path='/upload' component={Upload}/>
-          <Route path='/moderator' component={Moderator}/>
-          <Route path='/analyzer' component={Analyzer}/>
-          <Route path='/show-article/:id' component={ShowArticle}/>
-
-
+          <Route exact path='/' component={ShowBookList} />
+          <Route path='/create-book' component={CreateBook} />
+          <Route path='/edit-book/:id' component={UpdateBookInfo} />
+          <Route path='/show-book/:id' component={ShowBookDetails} />
         </div>
       </Router>
     );

@@ -1,61 +1,133 @@
-// routes/api/books.js
+// routes/api/articles.js
 
 const express = require('express');
 const router = express.Router();
 
-// Load Book model
-const Book = require('../../models/Book');
+// Load Article model
+const Article = require('../../models/article.js');
 
-// @route GET api/books/test
-// @description tests books route
+// @route GET api/articles/test
+// @description tests articles route
 // @access Public
-router.get('/test', (req, res) => res.send('book route testing!'));
+router.get('/test', (req, res) => res.send('article route testing!'));
 
-// @route GET api/books
-// @description Get all books
+// @route GET api/articles
+// @description Get all articles
 // @access Public
 router.get('/', (req, res) => {
-  Book.find()
-    .then(books => res.json(books))
-    .catch(err => res.status(404).json({ nobooksfound: 'No Books found' }));
+  Article.find()
+    .then(articles => res.json(articles))
+    .catch(err => res.status(404).json({ noarticlesfound: 'No Articles found' }));
 });
 
-// @route GET api/books/:id
-// @description Get single book by id
+
+// @route GET next api/articles
+// @description Get next article for analysing
+// @access Public
+router.get('/findNextArticle', (req, res) => {
+  Article.findOne({"type": 'processing'})
+    .then(articles => res.json(articles))
+    .catch(err => res.status(404).json({ noarticlesfound: 'No Article found to analyze' }));
+});
+
+// @route GET api/articles/:q1 as queried
+// with query
+// @description Get articles that satisfied query
+// @access Public
+router.get('/search/:q1', (req, res) => {
+  //split query string by &
+  let s=[];
+  let searchQuery;
+  s = req.params.q1.split('&');
+  if(s[0] != '' && s[1] != '' && s[2] != ''){
+    searchQuery = {"title": s[0], "isbn": s[1], "author": s[2], "type": 'accepted'};
+  }else if(s[0] == '' && s[1] == '' && s[2] == ''){
+    searchQuery = {"type": 'accepted'};
+  }else if(s[0] != '' && s[1] == '' && s[2] == ''){
+    searchQuery = {"title": s[0], "type": 'accepted'};
+  }else if(s[0] == '' && s[1] != '' && s[2] == ''){
+    searchQuery = {"isbn": s[1], "type": 'accepted'};
+  }else if(s[0] == '' && s[1] == '' && s[2] != ''){
+    searchQuery = {"author": s[2], "type": 'accepted'};
+  }else if(s[0] != '' && s[1] != '' && s[2] == ''){
+    searchQuery = {"title": s[0], "isbn": s[1], "type": 'accepted'};
+  }else if(s[0] != '' && s[1] == '' && s[2] != ''){
+    searchQuery = {"title": s[0], "author": s[2], "type": 'accepted'};
+  }else if(s[0] == '' && s[1] != '' && s[2] != ''){
+    searchQuery = {"isbn": s[1], "author": s[2], "type": 'accepted'};
+  }
+  
+  //searchQuery = {"title": s[0],"author":s[1]};
+  Article.find(searchQuery)
+    .then(articles => res.json(articles))
+    .catch(err => res.status(404).json({ noarticlesfound: 'No Articles found' }));
+});
+
+router.get('/moderatorSearch/:q1', (req, res) => {
+  //split query string by &
+  let s=[];
+  let moderatorSearchQuery;
+  s = req.params.q1.split('&');
+  if(s[0] != '' && s[1] != '' && s[2] != ''){
+    moderatorSearchQuery = {"title": s[0], "isbn": s[1], "author": s[2], "type": 'pending'};
+  }else if(s[0] == '' && s[1] == '' && s[2] == ''){
+    moderatorSearchQuery = {"type": 'pending'};
+  }else if(s[0] != '' && s[1] == '' && s[2] == ''){
+    moderatorSearchQuery = {"title": s[0], "type": 'pending'};
+  }else if(s[0] == '' && s[1] != '' && s[2] == ''){
+    moderatorSearchQuery = {"isbn": s[1], "type": 'pending'};
+  }else if(s[0] == '' && s[1] == '' && s[2] != ''){
+    moderatorSearchQuery = {"author": s[2], "type": 'pending'};
+  }else if(s[0] != '' && s[1] != '' && s[2] == ''){
+    moderatorSearchQuery = {"title": s[0], "isbn": s[1], "type": 'pending'};
+  }else if(s[0] != '' && s[1] == '' && s[2] != ''){
+    moderatorSearchQuery = {"title": s[0], "author": s[2], "type": 'pending'};
+  }else if(s[0] == '' && s[1] != '' && s[2] != ''){
+    moderatorSearchQuery = {"isbn": s[1], "author": s[2], "type": 'pending'};
+  }
+  
+
+  Article.find(moderatorSearchQuery)
+    .then(articles => res.json(articles))
+    .catch(err => res.status(404).json({ noarticlesfound: 'No Articles found' }));
+});
+
+// @route GET api/articles/:id
+// @description Get single article by id
 // @access Public
 router.get('/:id', (req, res) => {
-  Book.findById(req.params.id)
-    .then(book => res.json(book))
-    .catch(err => res.status(404).json({ nobookfound: 'No Book found' }));
+  Article.findById(req.params.id)
+    .then(article => res.json(article))
+    .catch(err => res.status(404).json({ noarticlesfound: 'No Article found' }));
 });
 
-// @route GET api/books
-// @description add/save book
+// @route GET api/articles
+// @description add/save article
 // @access Public
 router.post('/', (req, res) => {
-  Book.create(req.body)
-    .then(book => res.json({ msg: 'Book added successfully' }))
-    .catch(err => res.status(400).json({ error: 'Unable to add this book' }));
+  Article.create(req.body)
+    .then(article => res.json({ msg: 'Article added successfully' }))
+    .catch(err => res.status(400).json({ error: 'Unable to add this article' }));
 });
 
-// @route GET api/books/:id
-// @description Update book
+// @route GET api/articles/:id
+// @description Update article
 // @access Public
 router.put('/:id', (req, res) => {
-  Book.findByIdAndUpdate(req.params.id, req.body)
-    .then(book => res.json({ msg: 'Updated successfully' }))
+  Article.findByIdAndUpdate(req.params.id, req.body)
+    .then(article => res.json({ msg: 'Updated successfully' }))
     .catch(err =>
       res.status(400).json({ error: 'Unable to update the Database' })
     );
 });
 
-// @route GET api/books/:id
+// @route GET api/articles/:id
 // @description Delete book by id
 // @access Public
 router.delete('/:id', (req, res) => {
-  Book.findByIdAndRemove(req.params.id, req.body)
-    .then(book => res.json({ mgs: 'Book entry deleted successfully' }))
-    .catch(err => res.status(404).json({ error: 'No such a book' }));
+  Article.findByIdAndRemove(req.params.id, req.body)
+    .then(article => res.json({ mgs: 'Article entry deleted successfully' }))
+    .catch(err => res.status(404).json({ error: 'No such am article' }));
 });
 
 module.exports = router;

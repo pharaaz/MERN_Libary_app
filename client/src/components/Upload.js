@@ -4,9 +4,9 @@ import axios from 'axios';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
-import Avatar from '@mui/material/Avatar';
-import { deepOrange, deepPurple } from '@mui/material/colors';
 import { Dropdown } from 'semantic-ui-react';
+import mainPagePicture0 from "./mainPagePicture0.png";
+
 
 class Upload extends Component{
     constructor(props) {
@@ -73,12 +73,11 @@ class Upload extends Component{
                     <Nav.Link  href="/analyzer">Analyzer</Nav.Link>
                     </Nav>
                     <div onClick={this.profileClick}>
-                        <Avatar sx={{ bgcolor: deepOrange[500] }}>N</Avatar>   
                     </div>
                     <div>
-                        <Dropdown text='User'>
+                        <Dropdown text='Settings'>
                             <Dropdown.Menu>
-                            <Dropdown.Item text='Settings' />
+                            <Dropdown.Item text='Edit Profile' />
                             <Dropdown.Item text='Logout' />
                             </Dropdown.Menu>
                         </Dropdown>
@@ -174,6 +173,8 @@ class Upload extends Component{
               </div>
             </div>
           </div>
+
+          <img src={mainPagePicture0}/>
           </>
         );
       }

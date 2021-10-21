@@ -1,22 +1,14 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import '../App.css';
 import axios from 'axios';
-import ArticleCard from './ArticleCard';
-
-import Button from 'react-bootstrap';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
-
 import Avatar from '@mui/material/Avatar';
-import Stack from '@mui/material/Stack';
 import { deepOrange, deepPurple } from '@mui/material/colors';
 import { Dropdown } from 'semantic-ui-react';
 
 class Upload extends Component{
-    //implement normal user's upload action
-    
     constructor(props) {
         super(props);
         this.state = {
@@ -49,7 +41,6 @@ class Upload extends Component{
     axios
         .post(' https://sepersystem.herokuapp.com/api/articles/', data)
         .then(res => {
-        
         this.setState({
             title: '',
             isbn:'',
@@ -71,6 +62,7 @@ class Upload extends Component{
 
     render() {
         return (
+          
             <><Navbar bg="dark" variant="dark">
                 <Container>
                     <Nav className="mr-auto" >
@@ -84,11 +76,10 @@ class Upload extends Component{
                         <Avatar sx={{ bgcolor: deepOrange[500] }}>N</Avatar>   
                     </div>
                     <div>
-                        <Dropdown text='User name'>
+                        <Dropdown text='User'>
                             <Dropdown.Menu>
-                            <Dropdown.Item text='Browse profile' />
-                            <Dropdown.Item text='Edit profile' />
-                            <Dropdown.Item text='Logout' description='logout' />
+                            <Dropdown.Item text='Settings' />
+                            <Dropdown.Item text='Logout' />
                             </Dropdown.Menu>
                         </Dropdown>
                         
@@ -100,7 +91,6 @@ class Upload extends Component{
           <div className="CreateArticle">
             <div className="container">
               <div className="row">
-                
                 <div className="col-md-8 m-auto">
                   <h1 className="display-4 text-center">Add Article</h1>
                   <p className="lead text-center">

@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import '../App.css';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
-import Avatar from '@mui/material/Avatar';
-import { deepOrange, deepPurple } from '@mui/material/colors';
 import { Dropdown } from 'semantic-ui-react'
 import mainPagePicture0 from "./mainPagePicture0.png";   
 
@@ -39,7 +35,6 @@ class MainPage extends Component {
 
                     </Nav>
                     <div onClick={this.profileClick}>
-                        <Avatar sx={{ bgcolor: deepPurple[500] }}>F</Avatar>   
                     </div>
                     <div>
                         <Dropdown text='Settings'>

@@ -1,5 +1,5 @@
 {
-  "name": "cise_assignment",
+  "name": "assigment",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ycy190/CISE-Assignment.git"
+    "url": "git+https://github.com/pharaaz/assigment.git"
   },
-  "author": "Chenyang Yu 1290866",
-  "license": "ISC",
+  "author": "faraaz",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ycy190/CISE-Assignment/issues"
+    "url": "https://github.com/pharaaz/assigment/issues"
   },
-  "homepage": "https://github.com/ycy190/CISE-Assignment#readme",
+  "homepage": "https://github.com/pharaaz/assigment#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",

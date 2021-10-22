@@ -2,17 +2,11 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
 import axios from 'axios';
-import ArticleCard from './ArticleCard';
-
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
-
-import Avatar from '@mui/material/Avatar';
-import Stack from '@mui/material/Stack';
-import { deepOrange, deepPurple } from '@mui/material/colors';
 import { Dropdown } from 'semantic-ui-react';
-
+import mainPagePicture0 from "./mainPagePicture0.png"; 
 
 class ShowArticle extends Component{
     constructor(props) {
@@ -135,7 +129,6 @@ class ShowArticle extends Component{
             <td>Rating: </td>
             <td>{ parseFloat(article.rate).toFixed(2) }</td>
             </tr>
-
         </tbody>
         </table>
     </div>
@@ -153,14 +146,12 @@ class ShowArticle extends Component{
 
                     </Nav>
                     <div onClick={this.profileClick}>
-                        <Avatar sx={{ bgcolor: deepOrange[500] }}>N</Avatar>   
                     </div>
                     <div>
-                        <Dropdown text='User name'>
+                        <Dropdown text='Settings'>
                             <Dropdown.Menu>
-                            <Dropdown.Item text='Browse profile' />
                             <Dropdown.Item text='Edit profile' />
-                            <Dropdown.Item text='Logout' description='logout' />
+                            <Dropdown.Item text='Logout' />
                             </Dropdown.Menu>
                         </Dropdown>
                         
@@ -204,6 +195,7 @@ class ShowArticle extends Component{
                 </div>
             </div>
         </div>
+        <img src={mainPagePicture0}/>
         </>
     );
     }

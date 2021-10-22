@@ -1,6 +1,4 @@
-
-
 {
     "mongoURI":
-    "mongodb+srv://pharaaz:pharaaz1@assignmentt.tym5w.mongodb.net/Assignmentt?retryWrites=true&w=majority"
+      "mongodb+srv://pharaaz:pharaaz1@assignmentt.tym5w.mongodb.net/Assignmentt?retryWrites=true&w=majority"
   }

@@ -1,24 +1,14 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import '../App.css';
 import axios from 'axios';
 import ArticleModeratorCard from './ArticleModeratorCard';
-
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
-
-import Avatar from '@mui/material/Avatar';
-import Stack from '@mui/material/Stack';
-import { deepOrange, deepPurple } from '@mui/material/colors';
 import { Dropdown } from 'semantic-ui-react';
+import mainPagePicture0 from "./mainPagePicture0.png";  
 
 class Moderator extends Component{
-    //showing queue for moderators view
-    //should show all pending articles
-
-    //need to set up accept button, need to set up decline button
-    //button logic would be changing type field value and refresh the page if possible
     constructor(props) {
         super(props);
         this.state = {
@@ -94,12 +84,11 @@ class Moderator extends Component{
                     <Nav.Link  href="/analyzer">Analyzer</Nav.Link>
                     </Nav>
                     <div onClick={this.profileClick}>
-                        <Avatar sx={{ bgcolor: deepOrange[500] }}>N</Avatar>   
+                       
                     </div>
                     <div>
-                        <Dropdown text='User name'>
+                        <Dropdown text='Settings'>
                             <Dropdown.Menu>
-                            <Dropdown.Item text='Browse profile' />
                             <Dropdown.Item text='Edit profile' />
                             <Dropdown.Item text='Logout' description='logout' />
                             </Dropdown.Menu>
@@ -115,7 +104,7 @@ class Moderator extends Component{
                    
                     
                         
-                        <a style={bigFont}>Title:</a>
+                        <a style={bigFont}>Article Title:</a>
                         <textarea className="col-lg-3" value={this.state.title} onChange={this.handleChange} />
                      
                    
@@ -141,6 +130,7 @@ class Moderator extends Component{
                     
               </div>
               
+              <img src={mainPagePicture0}/>
 
             </>
           

@@ -1,25 +1,15 @@
-//perform search article action
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import '../App.css';
 import axios from 'axios';
 import ArticleCard from './ArticleCard';
-
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
-
-import Avatar from '@mui/material/Avatar';
-import Stack from '@mui/material/Stack';
-import { deepOrange, deepPurple } from '@mui/material/colors';
 import { Dropdown } from 'semantic-ui-react';
-
-
-
+import mainPagePicture0 from "./mainPagePicture0.png";   
 
 class SearchAction extends Component{
   
- 
     constructor(props) {
         super(props);
         this.state = {
@@ -30,8 +20,6 @@ class SearchAction extends Component{
         }
     
         this.handleChange = this.handleChange.bind(this);
-        //TypeError: Cannot read properties of undefined (reading 'setState')
-        //when meeting such error, means we will need to bind the handle function
         this.handleIsbnChange = this.handleIsbnChange.bind(this);
         this.handleAuthorChange = this.handleAuthorChange.bind(this);
        
@@ -51,16 +39,8 @@ class SearchAction extends Component{
         this.setState({author: event.target.value});
       }
 
-    
-
-
-
       handleSubmit(event) {
         event.preventDefault();
-        //var searchQuery = this.state.value;
-        //window.location.href = "/show-research-list";
-        
-        // + searchQuery;
         axios
             .get('https://sepersystem.herokuapp.com/api/articles/search/'+this.state.title+ '&' +this.state.isbn + '&'+this.state.author)
         .then(res => {
@@ -73,7 +53,6 @@ class SearchAction extends Component{
           console.log('Error from ShowResearchList');
         })
       }
-
 
       render() {
         const articles = this.state.articles;
@@ -105,14 +84,12 @@ class SearchAction extends Component{
                     <Nav.Link  href="/analyzer">Analyzer</Nav.Link>
                     </Nav>
                     <div onClick={this.profileClick}>
-                        <Avatar sx={{ bgcolor: deepOrange[500] }}>N</Avatar>   
                     </div>
                     <div>
-                        <Dropdown text='User name'>
+                        <Dropdown text='Settings'>
                             <Dropdown.Menu>
-                            <Dropdown.Item text='Browse profile' />
                             <Dropdown.Item text='Edit profile' />
-                            <Dropdown.Item text='Logout' description='logout' />
+                            <Dropdown.Item text='Logout' />
                             </Dropdown.Menu>
                         </Dropdown>
                         
@@ -125,7 +102,7 @@ class SearchAction extends Component{
                    
                     
                         
-                        <a style={bigFont}>Title:</a>
+                        <a style={bigFont}>Article Title:</a>
                         <textarea className="col-lg-3" value={this.state.title} onChange={this.handleChange} />
                      
                    
@@ -150,6 +127,7 @@ class SearchAction extends Component{
                     {articleList}
               </div>
               
+              <img src={mainPagePicture0}/>
 
             </>
           
